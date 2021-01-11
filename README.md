@@ -7,3 +7,11 @@ Tento plugin je připraven podle předlohy od McBirkena. Byl nakódován IToncke
 3. Stáhni si [Paper](https://papermc.io/downloads)
 4. Překopíruj plugin do složky `plugins`
 5. Nastartuj server. Nyní zkus `/mansave`. Mělo by ti to odpovědět `Co to jako je???`. V ten moment můžeš pokračovat do [nastavení]
+
+# Nastavení
+Celý proces nastavení je ve hře. V configu pluginu jsou pouze uchovávána data.
+více info ve [Wiki](https://github.com/MadeByIToncek/Mansave/wiki)
+
+#Licence
+- Jste plně oprávněni tento plugin použít ve videu, ALE!! musíte do popisku přidat odkaz na tento repozitář.
+- Ostatní informace v souboru LICENCE
