@@ -1,0 +1,60 @@
+# Mansave Configuration
+
+# Should the hunters take damage?
+huntersTakeDamage: true
+# Should the hunters lose hunger?
+huntersHungerLoss: true
+# Should the suicidal lose hunger? If true, they will also get a stack of steak.
+suicidalHungerLoss: true
+# Round timer (seconds)
+countdownInSeconds: 300
+
+# Items given to hunters at the start of each round
+# Don't change them here! Use the command `/mansave setHunterSlots` ingame for a nice GUI
+hunterSlot0:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: SPLASH_POTION
+  amount: 16
+  meta:
+    ==: ItemMeta
+    meta-type: POTION
+    potion-type: minecraft:strong_healing
+hunterSlot1:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: FISHING_ROD
+hunterSlot2:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: ENDER_PEARL
+  amount: 16
+hunterSlot3:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: SLIME_BLOCK
+  amount: 64
+hunterSlot4:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: SPONGE
+  amount: 64
+hunterSlot5:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: COOKED_BEEF
+  amount: 64
+hunterSlot6:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: ENCHANTED_GOLDEN_APPLE
+  amount: 64
+hunterSlot7:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: WATER_BUCKET
+hunterSlot8:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2584
+  type: COBWEB
+  amount: 64
