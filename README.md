@@ -12,6 +12,6 @@ Tento plugin je připraven podle předlohy od McBirkena. Byl nakódován IToncke
 Celý proces nastavení je ve hře. V configu pluginu jsou pouze uchovávána data.
 více info ve [Wiki](https://github.com/MadeByIToncek/Mansave/wiki)
 
-#Licence
+# Licence
 - Jste plně oprávněni tento plugin použít ve videu, ALE!! musíte do popisku přidat odkaz na tento repozitář.
 - Ostatní informace v souboru LICENCE
