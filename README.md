@@ -6,7 +6,7 @@ Tento plugin je připraven podle předlohy od McBirkena. Byl nakódován IToncke
 2. Stáhni si nejnovější soubor Mansave-*.*.jar,
 3. Stáhni si [Paper](https://papermc.io/downloads)
 4. Překopíruj plugin do složky `plugins`
-5. Nastartuj server. Nyní zkus `/mansave`. Mělo by ti to odpovědět `Co to jako je???`. V ten moment můžeš pokračovat do [nastavení]
+5. Nastartuj server. Nyní zkus `/mansave`. Mělo by ti to odpovědět `Co to jako je???`. V ten moment můžeš pokračovat do [nastavení](https://github.com/MadeByIToncek/Mansave/blob/readme/README.md#nastaven%C3%AD)
 
 # Nastavení
 Celý proces nastavení je ve hře. V configu pluginu jsou pouze uchovávána data.
