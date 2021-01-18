@@ -185,7 +185,16 @@ public class ManSave extends JavaPlugin implements Listener
                 }
             }
         }
-        sender.sendMessage(ChatColor.RED + "Co to jako je???");
+        sender.sendMessage(ChatColor.RED + "Nápověda:");
+        sender.sendMessage(ChatColor.RED + "/mansave start - Začne hru");
+        sender.sendMessage(ChatColor.RED + "/mansave stop - Ukončí hru");
+        sender.sendMessage(ChatColor.RED + "/mansave setHunterItems - Otevře menu editace hotbaru");
+        sender.sendMessage(ChatColor.RED + "/mansave addHunter <hráč> - Přidá hráče do seznamu lovců");
+        sender.sendMessage(ChatColor.RED + "/mansave removeHunter <hráč> - odebere hráče ze seznamu lovců");
+        sender.sendMessage(ChatColor.RED + "/mansave huntersTakeDamage <true|false> - false = lovci si nemůžou ubrat damage");
+        sender.sendMessage(ChatColor.RED + "/mansave huntersHungerLoss <true|false> - false = lovci neztrácí hlad.");
+        sender.sendMessage(ChatColor.RED + "/mansave suicidalHungerLoss <true|false> - false = speedrunnerovi neubývá hunger");
+        sender.sendMessage(ChatColor.RED + "/mansave countdownInSeconds <sekundy> - časový limit (normálně 300s = 5min)");
         return false;
     }
 
