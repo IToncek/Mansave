@@ -6,7 +6,7 @@
 
     <groupId>cz.itoncek</groupId>
     <artifactId>ManSave</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>ManSave</name>
@@ -55,8 +55,8 @@
 
     <repositories>
         <repository>
-            <id>papermc-repo</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
+            <id>purpur</id>
+            <url>https://repo.pl3x.net/</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -66,9 +66,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.16.4-R0.1-SNAPSHOT</version>
+            <groupId>net.pl3x.purpur</groupId>
+            <artifactId>purpur-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
