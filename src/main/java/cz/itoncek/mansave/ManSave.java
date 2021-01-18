@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package cz.itoncek.mansave;
 
@@ -85,7 +82,7 @@ public class ManSave extends JavaPlugin implements Listener
         this.getConfig().set("hunterSlot8", (Object)ManSave.hunterSlot[8]);
         this.saveConfig();
     }
-
+//commands
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
         final String cmd = command.getName().toLowerCase();
         if (cmd.equals("mansave")) {
