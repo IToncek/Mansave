@@ -15,3 +15,6 @@ více info ve [Wiki](https://github.com/MadeByIToncek/Mansave/wiki)
 # Licence
 - Jste plně oprávněni tento plugin použít ve videu, ALE!! musíte do popisku přidat odkaz na tento repozitář.
 - Ostatní informace v souboru LICENCE
+
+# Open-source knihovny, které jsem použil
+- [BiomeMapping](https://github.com/Mezy/BiomeMapping) - By Mezy, nahrazování oceánů jinými biomy.
