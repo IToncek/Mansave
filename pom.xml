@@ -55,8 +55,8 @@
 
     <repositories>
         <repository>
-            <id>purpur</id>
-            <url>https://repo.pl3x.net/</url>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -70,8 +70,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.pl3x.purpur</groupId>
-            <artifactId>purpur-api</artifactId>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
