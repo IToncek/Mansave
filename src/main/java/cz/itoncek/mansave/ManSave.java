@@ -1,9 +1,14 @@
 
 package cz.itoncek.mansave;
 
+import com.pieterdebot.biomemapping.Biome;
+import com.pieterdebot.biomemapping.BiomeMappingAPI;
+import javafx.geometry.Point3D;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
@@ -28,6 +33,8 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 
 public class ManSave extends JavaPlugin implements Listener
 {
@@ -64,6 +71,21 @@ public class ManSave extends JavaPlugin implements Listener
         this.getCommand("mansave").setTabCompleter((TabCompleter)new Autocomplete());
         ManSave.hunters = new ArrayList<Player>();
         ManSave.inGame = false;
+        BiomeMappingAPI api = new BiomeMappingAPI();
+        try {
+            api.replaceBiomes(Biome.LUKEWARM_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.COLD_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.WARM_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.FROZEN_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.DEEP_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.DEEP_FROZEN_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.DEEP_COLD_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.DEEP_LUKEWARM_OCEAN, Biome.FOREST);
+            api.replaceBiomes(Biome.DEEP_WARM_OCEAN, Biome.FOREST);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void onDisable() {
@@ -96,7 +118,7 @@ public class ManSave extends JavaPlugin implements Listener
                         World world = Bukkit.getWorld("world");
                         WorldBorder border = world.getWorldBorder();
                         border.setSize(400.0, 10);
-                        border.setCenter(0.0, 0.0);
+                        border.setCenter(0.0,0.0);
                     }
                     return true;
                 }
@@ -298,7 +320,24 @@ public class ManSave extends JavaPlugin implements Listener
             e.setDroppedExp(0);
             e.setDeathMessage(String.valueOf(e.getDeathMessage()) + " a vyhrál!");
             this.stopGame("Lovci prohráli!");
+            for (final Player player : Bukkit.getOnlinePlayers()) {
+                for (final PotionEffect effect : p.getActivePotionEffects()) {
+                    p.removePotionEffect(effect.getType());
+                }
+                player.setFireTicks(0);
+                player.setHealth(20.0);
+                player.setFoodLevel(20);
+                player.setTotalExperience(0);
+                player.getInventory().clear();
+                player.setGameMode(GameMode.SPECTATOR);
+            }
         }
+    }
+    @EventHandler
+    public void onJoin (PlayerJoinEvent e)
+    {
+        Player pl = e.getPlayer();
+        pl.setGameMode(GameMode.SPECTATOR);
     }
 
     public void startGame() {
@@ -330,10 +369,17 @@ public class ManSave extends JavaPlugin implements Listener
             p.setTotalExperience(0);
             p.getInventory().clear();
             p.setScoreboard(b);
+            p.setGameMode(GameMode.SURVIVAL);
             p.sendMessage(new StringBuilder().append(ChatColor.GOLD).append(ChatColor.BOLD).append("Hra začala! Hodně štěstí!").toString());
             if (!ManSave.hunters.contains(p) && ManSave.suicidalHungerLoss) {
                 p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.COOKED_BEEF, 64) });
             }
+            Location loc = new Location(Bukkit.getWorld("world"), 0, 255, 0, 0, 0);
+            loc.setY(255);
+            World world = Bukkit.getWorld("world");
+            final RayTraceResult result = world.rayTraceBlocks(loc, new Vector(0, -1, 0), 255);
+            final Location finaloc = result.getHitBlock().getLocation();
+            p.teleport((Location) finaloc);
         }
         for (final Player h : ManSave.hunters) {
             this.giveHunterItems(h);
@@ -357,6 +403,7 @@ public class ManSave extends JavaPlugin implements Listener
             p.setFoodLevel(20);
             p.setTotalExperience(0);
             p.getInventory().clear();
+            p.setGameMode(GameMode.SPECTATOR);
         }
         ManSave.inGame = false;
     }
