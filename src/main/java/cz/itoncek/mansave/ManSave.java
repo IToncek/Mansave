@@ -4,7 +4,6 @@ package cz.itoncek.mansave;
 import com.pieterdebot.biomemapping.Biome;
 import com.pieterdebot.biomemapping.BiomeMappingAPI;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -342,7 +341,7 @@ public class ManSave extends JavaPlugin implements Listener
     public void startGame() {
         final ScoreboardManager m = Bukkit.getScoreboardManager();
         final Scoreboard b = m.getNewScoreboard();
-        final Objective o = b.registerNewObjective("timer", "", "Countdown");
+        final Objective o = b.registerNewObjective("timer", "", "Odpočet");
         o.setDisplaySlot(DisplaySlot.SIDEBAR);
         final Score s = o.getScore("Čas");
         s.setScore(ManSave.countdownInSeconds);
@@ -373,6 +372,7 @@ public class ManSave extends JavaPlugin implements Listener
             if (!ManSave.hunters.contains(p) && ManSave.suicidalHungerLoss) {
                 p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.COOKED_BEEF, 64) });
             }
+            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3.0F, 1);
             Location loc = new Location(Bukkit.getWorld("world"), 0, 255, 0, 0, 0);
             loc.setY(255);
             World world = Bukkit.getWorld("world");
@@ -391,6 +391,7 @@ public class ManSave extends JavaPlugin implements Listener
         for (final Player p : Bukkit.getOnlinePlayers()) {
             p.sendMessage(new StringBuilder().append(ChatColor.GOLD).append(ChatColor.BOLD).append(msg).toString());
             p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+            p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 3.0F, 1);
             if (p.isDead()) {
                 continue;
             }
