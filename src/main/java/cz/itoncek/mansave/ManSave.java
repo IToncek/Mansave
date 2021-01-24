@@ -3,7 +3,6 @@ package cz.itoncek.mansave;
 
 import com.pieterdebot.biomemapping.Biome;
 import com.pieterdebot.biomemapping.BiomeMappingAPI;
-import javafx.geometry.Point3D;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
