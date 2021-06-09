@@ -4,6 +4,7 @@ package cz.itoncek.mansave;
 import com.pieterdebot.biomemapping.Biome;
 import com.pieterdebot.biomemapping.BiomeMappingAPI;
 import org.bukkit.*;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -129,21 +130,6 @@ public class ManSave extends JavaPlugin implements Listener
                     }
                     return true;
                 }
-                if (args[0].contentEquals("setHunterItems")) {
-                    final Inventory inv = Bukkit.createInventory((InventoryHolder)null, 9, "Vyber věci lovců:");
-                    for (int i = 0; i <= 8; ++i) {
-                        if (ManSave.hunterSlot[i] == null) {
-                            ManSave.hunterSlot[i] = new ItemStack(Material.AIR, 1);
-                        }
-                        inv.addItem(new ItemStack[] { ManSave.hunterSlot[i] });
-                    }
-                    final Player p = (Player)sender;
-                    p.openInventory(inv);
-                    p.sendMessage(ChatColor.BOLD + "Zavři inventář pro uložení!");
-                    p.sendMessage(ChatColor.GRAY + "Použij creativ a vlož věci do inventáře.");
-                    p.sendMessage(ChatColor.GRAY + "Použij prostřední tlačítko pro stakování nestakovatelých předmětů (např. lektvary).");
-                    return true;
-                }
             }
             else if (args.length == 2) {
                 if (args[0].equals("addHunter")) {
@@ -208,7 +194,6 @@ public class ManSave extends JavaPlugin implements Listener
         sender.sendMessage(ChatColor.RED + "Nápověda:");
         sender.sendMessage(ChatColor.RED + "/mansave start - Začne hru");
         sender.sendMessage(ChatColor.RED + "/mansave stop - Ukončí hru");
-        sender.sendMessage(ChatColor.RED + "/mansave setHunterItems - Otevře menu editace hotbaru");
         sender.sendMessage(ChatColor.RED + "/mansave addHunter <hráč> - Přidá hráče do seznamu lovců");
         sender.sendMessage(ChatColor.RED + "/mansave removeHunter <hráč> - odebere hráče ze seznamu lovců");
         sender.sendMessage(ChatColor.RED + "/mansave huntersTakeDamage <true|false> - false = lovci si nemůžou ubrat damage");
@@ -216,88 +201,6 @@ public class ManSave extends JavaPlugin implements Listener
         sender.sendMessage(ChatColor.RED + "/mansave suicidalHungerLoss <true|false> - false = speedrunnerovi neubývá hunger");
         sender.sendMessage(ChatColor.RED + "/mansave countdownInSeconds <sekundy> - časový limit (normálně 300s = 5min)");
         return false;
-    }
-
-    @EventHandler
-    public void onInventoryClick(final InventoryClickEvent e) {
-        if (!e.getView().getTitle().equals("Vyber věci lovců:")) {
-            return;
-        }
-        final Player p = (Player)e.getWhoClicked();
-        if (e.getClick() == ClickType.MIDDLE) {
-            if (p.getItemOnCursor().getType() != Material.AIR) {
-                return;
-            }
-            e.setCancelled(true);
-            final ItemStack i = e.getCurrentItem().clone();
-            i.setAmount(64);
-            p.setItemOnCursor(i);
-        }
-        else if (e.getClick() == ClickType.RIGHT) {
-            final ItemStack cur = p.getItemOnCursor();
-            final ItemStack cli = e.getCurrentItem();
-            if (cur == null || cli == null) {
-                return;
-            }
-            if (cur.getType() == Material.AIR || cli.getType() == Material.AIR) {
-                return;
-            }
-            if (cur.getType() == cli.getType()) {
-                if (cli.getAmount() == 64) {
-                    return;
-                }
-                cli.setAmount(cli.getAmount() + 1);
-                if (cur.getAmount() == 0) {
-                    p.setItemOnCursor((ItemStack)null);
-                }
-                else {
-                    cur.setAmount(cur.getAmount() - 1);
-                }
-            }
-            e.setCancelled(true);
-        }
-        else if (e.getClick() == ClickType.LEFT) {
-            final ItemStack cur = p.getItemOnCursor();
-            final ItemStack cli = e.getCurrentItem();
-            if (cli == null || cli.getType() == Material.AIR) {
-                if (cur == null || cur.getType() == Material.AIR) {
-                    return;
-                }
-                e.setCancelled(true);
-                e.getClickedInventory().setItem(e.getSlot(), cur);
-                p.setItemOnCursor((ItemStack)null);
-            }
-            else {
-                if (cur == null || cur.getType() == Material.AIR) {
-                    return;
-                }
-                if (cur.getType() == cli.getType()) {
-                    e.setCancelled(true);
-                    final int total = cur.getAmount() + cli.getAmount();
-                    if (total <= 64) {
-                        cli.setAmount(total);
-                        p.setItemOnCursor((ItemStack)null);
-                    }
-                    else {
-                        cli.setAmount(64);
-                        cur.setAmount(total - 64);
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onInventoryClose(final InventoryCloseEvent e) {
-        final InventoryView iv = e.getView();
-        if (!iv.getTitle().equals("Vyber věci lovců:")) {
-            return;
-        }
-        final Inventory inv = iv.getTopInventory();
-        for (int i = 0; i <= 8; ++i) {
-            ManSave.hunterSlot[i] = inv.getItem(i);
-        }
-        e.getPlayer().sendMessage(ChatColor.GREEN + "Uloženo!");
     }
 
     @EventHandler
@@ -336,6 +239,11 @@ public class ManSave extends JavaPlugin implements Listener
     {
         Player pl = e.getPlayer();
         pl.setGameMode(GameMode.SPECTATOR);
+        e.getPlayer().getWorld().setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
+        e.getPlayer().getWorld().setTime(6000L);
+        e.getPlayer().getWorld().setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        e.getPlayer().getWorld().setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+        e.getPlayer().getWorld().setDifficulty(Difficulty.NORMAL);
     }
 
     public void startGame() {

@@ -4,7 +4,6 @@ main: cz.itoncek.mansave.ManSave
 api-version: 1.16
 authors: [ IToncek ]
 description: MansavePlugin
-load: STARTUP
 
 commands:
   mansave:

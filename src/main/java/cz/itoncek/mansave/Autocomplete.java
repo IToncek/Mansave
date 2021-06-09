@@ -16,7 +16,6 @@ public class Autocomplete implements TabCompleter
         if (args.length == 1) {
             arguments.add("addHunter");
             arguments.add("removeHunter");
-            arguments.add("setHunterItems");
             arguments.add("start");
             arguments.add("stop");
             arguments.add("huntersTakeDamage");
