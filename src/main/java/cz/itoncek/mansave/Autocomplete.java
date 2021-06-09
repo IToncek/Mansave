@@ -1,6 +1,5 @@
 package cz.itoncek.mansave;
 
-import java.util.Iterator;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 import java.util.ArrayList;
