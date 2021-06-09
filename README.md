@@ -1,7 +1,5 @@
 # mansave-minigame
-
-[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-TODO: Put more badges here.
+[![Java CI with Maven](https://github.com/MadeByIToncek/Mansave/actions/workflows/maven.yml/badge.svg)](https://github.com/MadeByIToncek/Mansave/actions/workflows/maven.yml)
 
 This plugin is inspired by YouTuber McBirken.
 
