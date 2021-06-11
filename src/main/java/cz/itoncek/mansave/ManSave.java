@@ -1,8 +1,8 @@
 
 package cz.itoncek.mansave;
 
-import com.pieterdebot.biomemapping.Biome;
-import com.pieterdebot.biomemapping.BiomeMappingAPI;
+// import com.pieterdebot.biomemapping.Biome;
+// import com.pieterdebot.biomemapping.BiomeMappingAPI;
 import org.bukkit.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -65,6 +65,7 @@ public class ManSave extends JavaPlugin implements Listener
         this.getCommand("mansave").setTabCompleter((TabCompleter)new Autocomplete());
         ManSave.hunters = new ArrayList<Player>();
         ManSave.inGame = false;
+/*
         BiomeMappingAPI api = new BiomeMappingAPI();
         try {
             api.replaceBiomes(Biome.LUKEWARM_OCEAN, Biome.FOREST);
@@ -80,6 +81,7 @@ public class ManSave extends JavaPlugin implements Listener
         } catch (Exception e) {
             e.printStackTrace();
         }
+*/
     }
 
     public void onDisable() {
