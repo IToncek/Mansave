@@ -1,5 +1,5 @@
 # Mansave
-[![Java CI with Maven](https://github.com/MadeByIToncek/Mansave/actions/workflows/maven.yml/badge.svg)](https://github.com/MadeByIToncek/Mansave/actions/workflows/maven.yml)
+[![Java CI with Maven](https://github.com/MadeByIToncek/Mansave/actions/workflows/maven.yml/badge.svg)](https://github.com/MadeByIToncek/Mansave/actions/workflows/maven.yml)[![CodeQL](https://github.com/MadeByIToncek/Mansave/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/MadeByIToncek/Mansave/actions/workflows/codeql-analysis.yml)
 
 Tento plugin byl inspirován youtuberem [McBirken](https://www.youtube.com/channel/UCQaNjJ7Iwx-l91F5_gBJhiQ)
 TODO: Fill out this long description.
